@@ -9,7 +9,6 @@ public class Main {
         System.out.println("2. Regle de Majorite");
         System.out.println("3. Jeu de la Vie");
         System.out.println("4. FeuDeForet");
-        System.out.println("5. Automate personnalisé");
 
         int dimension=10;
         System.out.print("Votre choix: ");

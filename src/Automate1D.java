@@ -3,11 +3,21 @@ public class Automate1D extends AutomateCellulaire{
     private int dimension;
     private int[][] grille;
     private int t=0;
+    /**
+     * Constructeur de la classe Automate1D.
+     * @param dimension La dimension de la grille.
+     * @param regleLocale La regle que l'automate suivra
+     */
     public Automate1D(int dimension, int regleLocale) {
         this.dimension = dimension;
         this.regleLocale = regleLocale;
         this.grille = new int[dimension][];
     }
+    /**
+     * elle initialise la premiere configuration en mettant un 1 au milieu
+     * puis elle remplie la grille
+     *
+     */
     @Override
     public void initialiserGrille(){
         int[] configurationActuelle = new int[dimension];
@@ -19,6 +29,11 @@ public class Automate1D extends AutomateCellulaire{
             this.grille[i] = new int[dimension];
         }
     }
+
+    /**
+     * Fait évoluer la configuration actuelle en nous donnant une nouvelle configuration en suivant
+     * la régle et le voisinage.
+     */
     @Override
     public void evoluer() {
         int[] configurationActuelle = this.grille[t];
@@ -42,13 +57,21 @@ public class Automate1D extends AutomateCellulaire{
             this.grille[t] = nouvelleConfiguration;
         }
     }
-
+    /**
+     * @return la grille qui représente un tableau de tableau
+     */
     public int[][] getGrille(){
         return this.grille;
     }
-
-    private int getBit(int value, int[] voisinage) {
+    /**
+     * si le bit va etre un 1 ou un 0 en fonction de son voisinage et de la regle
+     * appliquée
+     * @param regle la regle qu'on va appliquer
+     * @param voisinage le voisinage du bit
+     * @return 1 ou 0 qui representera dans une ligne de la grille
+     */
+    private int getBit(int regle, int[] voisinage) {
         int position = voisinage[2] + 2 * voisinage[1] + 4 * voisinage[0];
-        return (value >> position) & 1;
+        return (regle >> position) & 1;
     }
 }
