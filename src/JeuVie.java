@@ -2,10 +2,19 @@ import java.util.Random;
 public class JeuVie extends AutomateCellulaire{
     int[][] grille;
     int dimension;
+
+    /**
+     * Constructeur de la classe JeuVie.
+     * @param dimension La dimension du tableau du jeu de la vie.
+     */
 	public JeuVie(int dimension){
         this.dimension=dimension;
         this.grille = new int[dimension][dimension];
     }
+
+    /**
+     * Initialise la grille du jeu de la vie avec des valeurs aléatoires (0 ou 1).
+     */
     @Override
     public void initialiserGrille() {
         Random random = new Random();
@@ -15,6 +24,10 @@ public class JeuVie extends AutomateCellulaire{
             }
         }
     }
+
+    /**
+     * Fait évoluer le jeu de la vie d'une génération.
+     */
     @Override
     public void evoluer(){
         int row = this.grille.length;
@@ -40,10 +53,23 @@ public class JeuVie extends AutomateCellulaire{
         }
         this.grille=newGround;
     }
+
+    /**
+     * Récupère la grille actuelle du jeu de la vie.
+     *
+     * @return La grille actuelle du jeu de la vie.
+     */
     @Override
     public int[][] getGrille(){
         return this.grille;
     }
+
+    /**
+    * Compte le nombre de voisins vivants autour d'une cellule donnée.
+    * @param row L'indice de ligne de la cellule.
+    * @param col L'indice de colonne de la cellule.
+    * @return Le nombre de voisins vivants autour de la cellule.
+    */
     private int countVoisinsAlives(int row, int col) {
         int voisinsAlive = 0;
         int rows = this.grille.length;
