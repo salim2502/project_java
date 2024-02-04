@@ -1,8 +1,8 @@
 public class Automate1D extends AutomateCellulaire{
     private int regleLocale;
-    public int dimension;
-    public int[][] grille;
-    public int t=0;
+    private int dimension;
+    private int[][] grille;
+    private int t=0;
     public Automate1D(int dimension, int regleLocale) {
         this.dimension = dimension;
         this.regleLocale = regleLocale;
