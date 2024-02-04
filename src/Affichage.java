@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La classe Affichage étend JFrame et représente l'interface graphique pour afficher un automate cellulaire.
+ */
 public class Affichage extends JFrame {
 
     private AutomateCellulaire automate;
@@ -13,12 +16,20 @@ public class Affichage extends JFrame {
     private int valeurDeuxInitiale;
     private boolean premierDeuxDetecte = false;
 
+    /**
+     * Constructeur de la classe Affichage.
+     *
+     * @param automate L'automate cellulaire à afficher.
+     */
     public Affichage(AutomateCellulaire automate) {
         this.automate = automate;
         this.automate.initialiserGrille();
         initialize();
     }
 
+    /**
+     * Initialise l'interface graphique en configurant les composants Swing.
+     */
     private void initialize() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Automate Frame");
@@ -53,6 +64,9 @@ public class Affichage extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Met à jour le panneau d'affichage de la grille dans l'interface graphique.
+     */
     private void updateGrillePanel() {
         temps++;
         int[][] grille = automate.getGrille();
@@ -80,6 +94,9 @@ public class Affichage extends JFrame {
         grillePanel.repaint();
     }
 
+    /**
+     * Met à jour l'affichage du label de temps dans l'interface graphique.
+     */
     private void updateTempsLabel() {
         if (premierDeuxDetecte) {
             int valeurDeuxActuelle = compterValeur(2);
@@ -93,6 +110,12 @@ public class Affichage extends JFrame {
         }
     }
 
+    /**
+     * Compte le nombre d'occurrences d'une valeur donnée dans la grille de l'automate.
+     *
+     * @param valeur La valeur à compter dans la grille.
+     * @return Le nombre d'occurrences de la valeur dans la grille.
+     */
     private int compterValeur(int valeur) {
         int[][] grille = automate.getGrille();
         int count = 0;
@@ -108,6 +131,12 @@ public class Affichage extends JFrame {
         return count;
     }
 
+    /**
+     * Définit la couleur d'un label en fonction de l'état spécifié.
+     *
+     * @param label Le label dont la couleur doit être définie.
+     * @param etat  L'état qui détermine la couleur.
+     */
     private void setColor(JLabel label, int etat) {
         label.setOpaque(true);
         switch (etat) {
